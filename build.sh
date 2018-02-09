@@ -10,8 +10,15 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-if [ -n "$SOURCE_REF" ]; then
-    git checkout $SOURCE_REF
+export COMMIT=$(echo $BUILD | jq -r '.spec.revision.git.commit | select (. != null)')
+if [ -n "$COMMIT" ]; then
+	CHECKOUT=$COMMIT
+else
+	CHECKOUT=$SOURCE_REF
+fi
+
+if [ -n "$CHECKOUT" ]; then
+    git checkout $CHECKOUT
 fi
 
 cp $PUSH_DOCKERCFG_PATH/.dockercfg $HOME/.dockercfg
