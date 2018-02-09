@@ -23,4 +23,6 @@ fi
 
 cp $PUSH_DOCKERCFG_PATH/.dockercfg $HOME/.dockercfg
 
+export OUTPUT_REPOSITORY=$(echo $OUTPUT_IMAGE | cut -d: -f1)
+
 bash -c "$BUILD_COMMAND"
