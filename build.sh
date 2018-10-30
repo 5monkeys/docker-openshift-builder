@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -x
+set -eo pipefail
 
 configure_git_privkey() {
     privatekey=$1
@@ -48,4 +48,5 @@ OUTPUT_REPOSITORY=$(echo "$OUTPUT_IMAGE" | cut -d: -f1)
 
 export COMMIT
 export OUTPUT_REPOSITORY
+
 bash -c "$BUILD_COMMAND"
