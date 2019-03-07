@@ -21,7 +21,7 @@ fast_checkout() {
     git remote add origin "$repository"
 
     [ -n "$ref" ] && fetch=$ref || fetch=HEAD
-    git fetch --depth 1 --tags origin $fetch
+    git fetch --depth 30 --tags origin $fetch
     git checkout FETCH_HEAD
 }
 
